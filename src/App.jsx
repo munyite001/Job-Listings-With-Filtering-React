@@ -3,6 +3,9 @@ import './App.css'
 import data from './data.json'
 
 function App() {
+
+  const [jobs, setJobs] = useState(data)
+
   const [windowWidth, setWindowWidth] = useState(window.innerWidth)
 
   useEffect(() => {
@@ -21,11 +24,53 @@ function App() {
   }, []); // Empty array ensures effect runs only on mount/unmount
 
 
+  const [filters, setFilters] = useState([])
+
+  //  Function to filter jobs based on filters
+  useEffect(() => {
+    const filteredJobs = data.filter((job) => {
+      const tags = [job.role, job.level, ...(job.tools || []), ...(job.languages || [])]
+      return filters.every((filter) => tags.includes(filter))
+    })
+    setJobs(filteredJobs)
+  }, [filters])
+
+  const addFilter = (filter) => {
+    setFilters((prev) => {
+      if (prev.includes(filter)) {
+        return prev
+      }
+      return [...prev, filter]
+    })
+  }
+
+
+  const handleRemoveFilter = (filter) => {
+    setFilters((prev) => {
+      return prev.filter((item) => item !== filter)
+    })
+  }
+
+
   return (
     <div className='app'>
       <header className={windowWidth <= 768 ? "mobile-header" : "desktop-header"}></header>
+      {filters.length > 0 && <div className="filter-box">
+          {filters.map((filter, index) => {
+            return (
+              <div className='filter-tag-container' key={index}>
+                <div className='filter-tag'>
+                  {filter}
+                </div>
+                <div className="remove-filter" onClick={() => handleRemoveFilter(filter)}>
+                  &#10006;
+                </div>
+              </div>
+            )
+          })}
+        </div>}
       <div className="job-listings-container">
-        {data.map((job) => {
+        {jobs.map((job) => {
           return (
             <div className="job-listing" key={job.id}>
               <div className="job-listing-details">
@@ -50,7 +95,7 @@ function App() {
               <div className="job-listing-tags">
               {[...[job.role], ...[job.level], ...(job.tools || []), ...(job.languages || [])
                 ].map((tag, index) => (
-                  <div className="tag" key={index}>
+                  <div className="tag" key={index} onClick={() => addFilter(tag)}>
                     {tag}
                   </div>
                 ))}

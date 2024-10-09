@@ -62,7 +62,7 @@ header {
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin: 2rem 0 1rem;
+  margin: 1rem 0 1rem;
 }
 
 .job-listings-container .job-listing:nth-child(1) {
@@ -146,6 +146,12 @@ header {
   margin: 1rem 0;
   font-size: 18px;
   font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.job-listing-info h2:hover {
+  color: var(--desaturated-dark-cyan);
 }
 
 .job-listing-meta {
@@ -181,6 +187,14 @@ header {
   font-weight: 900;
   padding: 0.3rem;
   margin: 0.5rem 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+}
+
+.job-listing-tags .tag:hover {
+  background-color: var(--desaturated-dark-cyan);
+  color: white;
 }
 
 
@@ -223,4 +237,56 @@ header {
     margin: 0.3rem 0;
   }
 
+}
+
+.filter-box {
+  background-color: white;
+  width: 80%;
+  min-height: 4rem;
+  margin: 0 auto;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.filter-tag-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 25px;
+  width: fit-content;
+  margin: 0.5rem 1rem;
+  background-color: var(--light-grayish-cyan-bg);
+
+}
+
+.filter-tag {
+  background-color: var(--light-grayish-cyan-bg);
+  color: var(--desaturated-dark-cyan);
+  height: fit-content;
+  width: fit-content;
+  font-weight: 900;
+  position: relative;
+  border-radius: 3px;
+  padding: 0.2rem 0.3rem;
+  border-radius: 3px;
+}
+
+.filter-tag-container .remove-filter {
+  background-color: var(--desaturated-dark-cyan);
+  color: white;
+  width: 25px;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  margin-left: 0.3rem;
+  cursor: pointer;
+  border-radius: 0 3px 3px 0;
+  transition: all 0.3s ease;
+}
+
+.filter-tag-container .remove-filter:hover {
+  background-color: var(--very-dark-grayish-cyan);
+  color: white;
 }

@@ -68,6 +68,7 @@ function App() {
               </div>
             )
           })}
+          <span className='clear' onClick={() => setFilters([])}>clear</span>
         </div>}
       <div className="job-listings-container">
         {jobs.map((job) => {

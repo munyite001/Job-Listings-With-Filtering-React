@@ -290,3 +290,15 @@ header {
   background-color: var(--very-dark-grayish-cyan);
   color: white;
 }
+
+.clear {
+  color: var(--dark-grayish-cyan);
+  position: absolute;
+  right: 1rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.clear:hover {
+  color: var(--desaturated-dark-cyan);
+}
